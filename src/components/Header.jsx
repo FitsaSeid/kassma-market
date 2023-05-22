@@ -1,21 +1,24 @@
 import React from 'react'
 import logo from '../assets/images/starLogo.png'
 import menuIcon from '../assets/images/menu.png'
+import { Link } from 'react-router-dom'
 function Header() {
     return (
         <nav>
             <div className='nav'>
-                <img className="nav__logo" src={logo} alt="" />
+                <Link to="/">
+                    <img className="nav__logo" src={logo} alt="" />
+                </Link>
                 <div className='nav__links'>
-                    <a href="">Categories</a>
-                    <a href="">New Products</a>
-                    <a href="">About us</a>
+                    <Link to="">Categories</Link>
+                    <Link to="/products">Products</Link>
+                    <Link to="">About us</Link>
                 </div>
                 <div className='nav__personal__menus'>
-                    <a href="">Sign in</a>
-                    <a href="">cart</a>
+                    <Link to="">Sign in</Link>
+                    <Link to="">cart</Link>
                 </div>
-                <a className="nav__menu" href=""><img className='nav__menu__icon' src={menuIcon} alt="menu" /></a>
+                <Link className="nav__menu" to=""><img className='nav__menu__icon' src={menuIcon} alt="menu" /></Link>
 
             </div>
         </nav>
