@@ -4,14 +4,14 @@ function TopHeader() {
     return (
         <div className='topheader'>
             <div className="topheader__contact">
-                <h5>+251 939 241718</h5>
+                <p>+251 939 241718</p>
             </div>
             <div className="topheader__latest__Info">
-                <h5>Upto 20% discount on ethiopian products</h5>
+                <p>Upto 20% discount on ethiopian products</p>
             </div>
 
             <div className="topheader__menu">
-                <h5>English</h5>
+                <p>English</p>
             </div>
         </div>
     )

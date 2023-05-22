@@ -1,8 +1,14 @@
 import React, { useState } from 'react'
 import headphone from '../assets/images/headphone2.png'
 import Rating from '../components/Rating';
-function SingleProduct() {
+import { useParams } from 'react-router-dom';
+import product from '../data/data.js'
+
+function SingleProduct(props) {
+    const { id } = useParams();
     const [itemCount, setItemCount] = useState(0);
+
+    const Product = product.find(item => item.id === parseInt(id));
 
     const increase = () => {
         setItemCount(itemCount + 1);
@@ -17,18 +23,18 @@ function SingleProduct() {
         <div className='singleProduct'>
             <div className="singleProduct__images">
                 <div className="primary__image">
-                    <img src={headphone} alt="" />
+                    <img src={Product.product_image} alt="" />
                 </div>
                 <div className="secondary__images">
                     <div>
-                        <img src={headphone} alt="" />
+                        <img src={Product.product_image} alt="" />
                     </div>
                     <div>
-                        <img src={headphone} alt="" />
+                        <img src={Product.product_image} alt="" />
                     </div><div>
-                        <img src={headphone} alt="" />
+                        <img src={Product.product_image} alt="" />
                     </div><div>
-                        <img src={headphone} alt="" />
+                        <img src={Product.product_image} alt="" />
                     </div>
                 </div>
             </div>
@@ -40,12 +46,12 @@ function SingleProduct() {
                 </div>
 
                 <div className="product__rating">
-                    <Rating rating={4.5} />
-                    <p>{13} reviews</p>
+                    <Rating rating={Product.product_rating} />
+                    <p>{Product.noOfReview} reviews</p>
                 </div>
 
                 <div className="price">
-                    <h4>$999.00</h4>
+                    <h4>{`$${Product.product_price}`}</h4>
                 </div>
                 <div className="actions">
                     <div className="counter">
