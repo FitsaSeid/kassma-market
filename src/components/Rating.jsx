@@ -7,7 +7,7 @@ function Rating({ rating }) {
                 const rate = [];
                 for (let x = 1; x <= 5; x++) {
                     rate.push(
-                        <i className={
+                        <i key={x} className={
                             rating >= x ? "fa-solid fa-star" :
                                 rating >= (x - 0.5) ? "fa-solid fa-star-half-stroke" :
                                     "fa-shape fa-regular fa-star"} style={{

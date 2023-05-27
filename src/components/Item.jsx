@@ -5,6 +5,7 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
 import { Link } from 'react-router-dom';
 import Rating from './Rating';
+
 function Item({ product }) {
     return (
         <div className='product' >

@@ -2,7 +2,7 @@
 const product = [
     {
         id: 1,
-        product_name: "YSSOA Racing Video Backrest and Seat Height Recliner",
+        product_name: "YSSOA Racing Video Backrest and Seat Height Recliner YSSOA Racing Video Backrest and Seat Height Recliner",
         product_image: "https://i.postimg.cc/tRsK8PLj/headphone2.png",
         product_price: 129,
         product_rating: 4.5,

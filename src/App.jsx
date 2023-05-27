@@ -10,10 +10,9 @@ import Footer from './components/Footer'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 import SingleProduct from './pages/SingleProduct'
+import Cart from './pages/Cart'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
       <TopHeader />
@@ -22,6 +21,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/products' element={<Products />} />
         <Route path='/product/:id' Component={SingleProduct} />
+        <Route path='/cart/:id' Component={Cart} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />

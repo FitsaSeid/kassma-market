@@ -1,9 +1,11 @@
 import React from 'react'
 import product from '../data/data'
 import Item from '../components/Item'
+import { useDispatch } from 'react-redux'
 
 function Products() {
-    console.log(product)
+    const dispatch = useDispatch();
+
     return (
         <div className='products'>
             <h2 className='product__title'>Trending products</h2>
