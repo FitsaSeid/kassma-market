@@ -8,13 +8,20 @@ export const addToCart = (productId, quantity) => async (dispatch) => {
             type: 'ADD TO CART SUCCESSFULLY',
             payload: {
                 ...data.data,
-                quantity
+                product_price: parseFloat(quantity) * data.data.product_price,
+                quantity: parseInt(quantity)
             }
         })
     } catch (error) {
         dispatch({
             type: 'ADD TO CART FAILED',
-            payload: error.response.data.message || error.message
+            payload: error.message
         })
     }
 }
+
+// export const cartItemCount = (dispatch) => {
+//     dispatch({
+
+//     })
+// }

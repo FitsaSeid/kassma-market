@@ -21,7 +21,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/products' element={<Products />} />
         <Route path='/product/:id' Component={SingleProduct} />
-        <Route path='/cart/:id' Component={Cart} />
+        <Route path='/cart' Component={Cart} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />

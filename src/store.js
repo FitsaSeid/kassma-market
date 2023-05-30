@@ -9,6 +9,7 @@ const reducers = combineReducers({
     singleProduct,
     addToCart
 })
+// console.log(addToCart({ type: 'ADD TO CART SUCCESSFULLY', payload: "k" }))
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

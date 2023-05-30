@@ -8,13 +8,13 @@ import { message } from 'antd'
 /*components */
 import Rating from '../components/Rating';
 import { singleProduct } from '../action/product';
+import { addToCart } from '../action/cart';
 
 function SingleProduct(props) {
     const { id } = useParams();
     const [itemCount, setItemCount] = useState(1);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    // const Product = product.find(item => item.id === parseInt(id));
     const { product, error } = useSelector(state => state.singleProduct)
     const [messageApi, contextHolder] = message.useMessage();
 
@@ -41,11 +41,12 @@ function SingleProduct(props) {
         setItemCount(itemCount - 1);
     }
 
-    const addToCart = () => {
+    const addToCartHandler = () => {
         if (itemCount < 1)
             messages('error', 'You have to at lease 1 item to order ');
         else
-            navigate(`/cart/${id}?quantity=${itemCount}`)
+            dispatch(addToCart(id, itemCount))
+        // navigate(`/cart/${id}?quantity=${itemCount}`)
     }
     return (
         <div className='singleProduct'>
@@ -93,7 +94,7 @@ function SingleProduct(props) {
                     </div>
                     <div className="main__actions">
                         <button className='btn__buyNow'>Buy Now</button>
-                        <button onClick={addToCart} className='btn__addToCart'>Add to Cart</button>
+                        <button onClick={addToCartHandler} className='btn__addToCart'>Add to Cart</button>
                     </div>
                 </div>
             </div>
