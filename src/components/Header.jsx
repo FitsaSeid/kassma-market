@@ -16,7 +16,7 @@ function Header() {
                 </div>
                 <div className='nav__personal__menus'>
                     <Link to="">Sign in</Link>
-                    <Link to="">cart</Link>
+                    <Link to="/cart">cart</Link>
                 </div>
                 <Link className="nav__menu" to=""><img className='nav__menu__icon' src={menuIcon} alt="menu" /></Link>
 

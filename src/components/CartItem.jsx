@@ -1,7 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Rating from './Rating';
+import { useDispatch, useSelector } from 'react-redux';
+import { cartItemQtyUpdate } from '../features/cartSlice';
 
-function CartItem({ product_name, product_image, product_price, quantity, rating, noOfReview }) {
+function CartItem({ product_id, product_name, product_image, product_price, noOfProduct, totalItemPrice, rating, noOfReview }) {
+    const dispatch = useDispatch();
+    const [qty, setQty] = useState(noOfProduct);
+
+    const qtyUpdateHandler = () => {
+        dispatch(cartItemQtyUpdate({ product_id, qty }))
+    }
 
     return (
         <div className='cart'>
@@ -21,7 +29,13 @@ function CartItem({ product_name, product_image, product_price, quantity, rating
                         </div>
                         <button className='btn__remove__item__cart'>Remove from Cart</button>
                     </div>
-                    <h3>{`Amount: ${quantity}`}</h3>
+                    <div className='cart__qty_update__button'>
+                        <input type="text" defaultValue={noOfProduct} onChange={(e) => {
+                            e.preventDefault()
+                            setQty(e.target.value)
+                        }} />
+                        <button onClick={qtyUpdateHandler}>Update</button>
+                    </div>
                 </div>
 
             </div>

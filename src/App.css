@@ -348,13 +348,13 @@ footer {
   display: flex;
   flex-wrap: wrap;
   margin: 15px;
-
+  width: 100%;
 }
 
 .cart__item__description {
   margin: 30px;
   display: flex;
-  width: 50%;
+  width: 65%;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -394,6 +394,37 @@ footer {
   border: 2px solid #013d2b;
   cursor: pointer;
   font-size: 0.7rem !important;
+}
+
+.loading {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+
+.cart__qty_update__button input {
+  padding: 5px 10px;
+  width: 30px;
+  margin-right: 10px;
+  background-color: #fff;
+  border: #013d2b solid 2px;
+}
+
+.cart__qty_update__button button {
+  padding: 6px 15px;
+  width: 100px;
+  background-color: #fff;
+  margin-right: 20px;
+  color: #013d2b;
+  border-radius: 30px;
+  border: 2px solid #013d2b;
+  cursor: pointer;
+}
+
+.cart__qty_update__button button:hover {
+  background-color: #013d2b;
+  border: 3px solid #013d2b;
+  color: #fff;
 }
 
 @media screen and (max-width: 960px) {

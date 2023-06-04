@@ -10,7 +10,7 @@ function Item({ product }) {
     return (
         <div className='product' >
             <div className="product__img" >
-                <Link to={`/product/${product.id}`}>
+                <Link to={`/product/${product._id}`}>
                     <img src={product.product_image} alt={product.product_name} />
                 </Link>
             </div>
@@ -21,7 +21,7 @@ function Item({ product }) {
             </div>
 
             <div className="product__info">
-                <Link to={`/product/${product.id}`}>
+                <Link to={`/product/${product._id}`}>
                     <h5 className="product__name">{product.product_name}</h5>
                 </Link>
                 <h5 className="product__name">{`$${product.product_price}`}</h5>

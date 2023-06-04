@@ -8,6 +8,10 @@ import { message } from 'antd'
 /*components */
 import Rating from '../components/Rating';
 import { singleProduct } from '../action/product';
+import { fetchSingleProduct } from '../features/productSlice';
+import Loading from '../components/Loading';
+import product from '../data/data';
+import { addToCart } from '../features/cartSlice';
 
 function SingleProduct(props) {
     const { id } = useParams();
@@ -15,7 +19,9 @@ function SingleProduct(props) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     // const Product = product.find(item => item.id === parseInt(id));
-    const { product, error } = useSelector(state => state.singleProduct)
+    const { singleProduct, error, status } = useSelector(state => state.products)
+    const cart = useSelector(state => state.addProductToCart)
+
     const [messageApi, contextHolder] = message.useMessage();
 
     const messages = (type, content) => {
@@ -26,10 +32,10 @@ function SingleProduct(props) {
     };
 
     useEffect(() => {
-        dispatch(singleProduct(id))
+        dispatch(fetchSingleProduct(id))
     }, [dispatch])
 
-    if (!product) {
+    if (!singleProduct) {
         return <div>{error}</div>
     }
 
@@ -41,63 +47,68 @@ function SingleProduct(props) {
         setItemCount(itemCount - 1);
     }
 
-    const addToCart = () => {
+    const addToCartHandler = (product) => {
         if (itemCount < 1)
             messages('error', 'You have to at lease 1 item to order ');
-        else
-            navigate(`/cart/${id}?quantity=${itemCount}`)
+        else {
+            dispatch(addToCart({ product, itemCount }));
+        }
+        // navigate(`/cart/${id}?quantity=${itemCount}`)
     }
     return (
-        <div className='singleProduct'>
-            {contextHolder}
-            <div className="singleProduct__images">
-                <div className="primary__image">
-                    <img src={product?.product_image} alt="" />
-                </div>
-                <div className="secondary__images">
-                    <div>
-                        <img src={product?.product_image} alt="" />
-                    </div>
-                    <div>
-                        <img src={product?.product_image} alt="" />
-                    </div><div>
-                        <img src={product?.product_image} alt="" />
-                    </div><div>
-                        <img src={product?.product_image} alt="" />
-                    </div>
-                </div>
-            </div>
 
-            <div className="singleProduct__details">
-                <div className="info">
-                    <h3 className="title">{product?.product_name}</h3>
-                    <p className="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur consequatur molestiae exercitationem, magnam officiis recusandae, id delenii.</p>
-                </div>
-
-                <div className="product__rating">
-                    <Rating rating={product?.product_rating} />
-                    <p>{product?.noOfReview} reviews</p>
-                </div>
-
-                <div className="price">
-                    <h4>{`$${product?.product_price}`}</h4>
-                </div>
-                <div className="actions">
-                    <div className="counter">
-                        <div className='count__action'>
-                            <p onClick={decrease}>-</p>
-                            <p>{itemCount}</p>
-                            <p onClick={increase}>+</p>
+        status === 'error' ? <Error error={error} /> :
+            status === 'pending' ? <Loading /> :
+                <div className='singleProduct'>
+                    {contextHolder}
+                    <div className="singleProduct__images">
+                        <div className="primary__image">
+                            <img src={singleProduct?.product_image} alt="" />
                         </div>
-                        <p className="total__items">Only 46 items left</p>
+                        <div className="secondary__images">
+                            <div>
+                                <img src={singleProduct?.product_image} alt="" />
+                            </div>
+                            <div>
+                                <img src={singleProduct?.product_image} alt="" />
+                            </div><div>
+                                <img src={singleProduct?.product_image} alt="" />
+                            </div><div>
+                                <img src={singleProduct?.product_image} alt="" />
+                            </div>
+                        </div>
                     </div>
-                    <div className="main__actions">
-                        <button className='btn__buyNow'>Buy Now</button>
-                        <button onClick={addToCart} className='btn__addToCart'>Add to Cart</button>
+
+                    <div className="singleProduct__details">
+                        <div className="info">
+                            <h3 className="title">{singleProduct?.product_name}</h3>
+                            <p className="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur consequatur molestiae exercitationem, magnam officiis recusandae, id delenii.</p>
+                        </div>
+
+                        <div className="product__rating">
+                            <Rating rating={singleProduct?.product_rating} />
+                            <p>{singleProduct?.noOfReview} reviews</p>
+                        </div>
+
+                        <div className="price">
+                            <h4>{`$${singleProduct?.product_price}`}</h4>
+                        </div>
+                        <div className="actions">
+                            <div className="counter">
+                                <div className='count__action'>
+                                    <p onClick={decrease}>-</p>
+                                    <p>{itemCount}</p>
+                                    <p onClick={increase}>+</p>
+                                </div>
+                                <p className="total__items">Only 46 items left</p>
+                            </div>
+                            <div className="main__actions">
+                                <button className='btn__buyNow'>Buy Now</button>
+                                <button onClick={() => { addToCartHandler(singleProduct) }} className='btn__addToCart'>Add to Cart</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div >
+                </div >
     )
 }
 
