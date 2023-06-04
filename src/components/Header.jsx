@@ -2,7 +2,9 @@ import React from 'react'
 import logo from '../assets/images/starLogo.png'
 import menuIcon from '../assets/images/menu.png'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 function Header() {
+    // const numOfCartItem = useSelector
     return (
         <nav>
             <div className='nav'>

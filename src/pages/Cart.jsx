@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import CartItem from '../components/CartItem'
 import { useParams, useSearchParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../action/cart';
 
 function Cart() {
     const [searchParams] = useSearchParams();
+    const [refresh, setRefresh] = useState(false);
     const { id } = useParams()
 
     const dispatch = useDispatch();
@@ -17,6 +18,8 @@ function Cart() {
     useEffect(() => {
         // dispatch(addToCart(id, quantity))
     }, [dispatch])
+
+    console.log(cartItems)
 
     return (
         <div>

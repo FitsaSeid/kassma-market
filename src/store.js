@@ -8,5 +8,6 @@ const store = configureStore({
         addProductToCart: cartSlice
     }
 })
+// console.log(addToCart({ type: 'ADD TO CART SUCCESSFULLY', payload: "k" }))
 
 export default store
