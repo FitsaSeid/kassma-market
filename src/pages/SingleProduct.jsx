@@ -53,10 +53,9 @@ function SingleProduct(props) {
         else {
             dispatch(addToCart({ product, itemCount }));
         }
-        // navigate(`/cart/${id}?quantity=${itemCount}`)
     }
-    return (
 
+    return (
         status === 'error' ? <Error error={error} /> :
             status === 'pending' ? <Loading /> :
                 <div className='singleProduct'>

@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import BASE_URL from "../URL/url";
 
 const initialState = {
     products: [],

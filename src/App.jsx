@@ -11,6 +11,8 @@ import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 import SingleProduct from './pages/SingleProduct'
 import Cart from './pages/Cart'
+import Login from './pages/Login'
+import RequireAuthentication from './features/RequireAuthentication'
 
 function App() {
   return (
@@ -19,9 +21,12 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/products' element={<Products />} />
+        <Route element={<RequireAuthentication />}>
+          <Route path='/products' element={<Products />} />
+        </Route>
         <Route path='/product/:id' Component={SingleProduct} />
         <Route path='/cart' Component={Cart} />
+        <Route path='/login' Component={Login} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />

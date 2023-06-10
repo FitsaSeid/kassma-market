@@ -1,9 +1,9 @@
 import { createSlice, current } from "@reduxjs/toolkit";
 
 
-
+// localStorage.removeItem('cartProducts')
 const initialState = {
-    cartProducts: JSON.parse(localStorage.getItem('cart-products')) || [],
+    cartProducts: JSON.parse(localStorage.getItem('cartProducts')) || [],
     totalItemPrice: 0,
     totalPrice: 0,
     shippingFee: false
@@ -36,7 +36,7 @@ const cartSlice = createSlice({
                     tempTotalPrice += item.totalItemPrice
                 })
                 state.totalPrice = tempTotalPrice
-                localStorage.setItem('cartProducts', JSON.stringify(current(state)))
+                localStorage.setItem('cartProducts', JSON.stringify(current(state.cartProducts)))
             },
             prepare({ product, itemCount }) {
                 return { payload: { product, itemCount } }
@@ -48,13 +48,12 @@ const cartSlice = createSlice({
             })
         },
         cartItemQtyUpdate: (state, action) => {
-            console.log(action)
             let previousItem = state.cartProducts?.find(item => item._id === action.payload.product_id);
             if (previousItem) {
                 previousItem.noOfProduct = Number(action.payload.qty)
                 previousItem.totalItemPrice = Number(action.payload.qty) * previousItem.product_price
             }
-            localStorage.setItem('cartProducts', JSON.stringify(current(state)))
+            localStorage.setItem('cartProducts', JSON.stringify(current(state.cartProducts)))
         }
     }
 })

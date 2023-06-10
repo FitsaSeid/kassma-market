@@ -1,25 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import CartItem from '../components/CartItem'
 import { useParams, useSearchParams } from 'react-router-dom';
-import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import { addToCart } from '../action/cart';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Cart() {
-    const [searchParams] = useSearchParams();
-    const [refresh, setRefresh] = useState(false);
-    const { id } = useParams()
 
     const dispatch = useDispatch();
-    const cartItems = useSelector(state => state.addProductToCart);
+    const { cartProducts, totalPrice } = useSelector(state => state.addProductToCart);
 
-    const { cartProducts, totalPrice } = JSON.parse(localStorage.getItem('cartProducts'))
-    const quantity = searchParams.get('quantity');
     const product = cartProducts;
+
     useEffect(() => {
         // dispatch(addToCart(id, quantity))
     }, [dispatch])
 
-    console.log(cartItems)
+    console.log(cartProducts)
 
     return (
         <div>
@@ -38,7 +33,8 @@ function Cart() {
                     </div>
                 ))
             }
-            <div>subtotal: {totalPrice}</div>
+            <div>subtotal: {product.reduce((total, item) => total + item.noOfProduct, 0)}</div>
+            <div>subtotal: {product.reduce((total, item) => total + item.totalItemPrice, 0)}</div>
         </div>
     )
 }

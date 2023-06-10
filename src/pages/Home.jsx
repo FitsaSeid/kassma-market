@@ -10,11 +10,14 @@ import Item from '../components/Item'
 import { allProducts } from '../action/product'
 import { fetchProducts } from '../features/productSlice'
 import Loading from '../components/Loading'
+import { useGetAllProductsQuery } from '../features/authApiSlice'
 
 function Home() {
     const dispatch = useDispatch();
 
-    const { products, error, status } = useSelector(state => state.products);
+    const { data } = useGetAllProductsQuery();
+    const products = data
+    // const { products, error, status } = useSelector(state => state.products);
     const [messageApi, contextHolder] = message.useMessage();
 
     const messages = (type, content) => {
@@ -25,9 +28,9 @@ function Home() {
     };
 
     console.log(status)
-    useEffect(() => {
-        dispatch(fetchProducts())
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(fetchProducts())
+    // }, [dispatch])
 
     return (
         <div>
